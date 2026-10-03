@@ -1,24 +1,20 @@
 'use client';
 
 import { ArrowUpRight } from 'lucide-react';
-import { SyntheticEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 export default function ContactForm() {
   const [sent, setSent] = useState(false);
 
-  function submit(event: SyntheticEvent<HTMLFormElement, SubmitEvent>) {
+  function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const value = (name: string, fallback = '') => {
-      const entry = data.get(name);
-      return typeof entry === 'string' && entry.trim() ? entry : fallback;
-    };
     const message = [
       'Hi Opervia, I would like to discuss a project.',
-      `Name: ${value('name')}`,
-      `Business: ${value('business', 'Not specified')}`,
-      `Requirement: ${value('requirement')}`,
-      `Details: ${value('details', 'I would like to connect.')}`,
+      `Name: ${data.get('name')}`,
+      `Business: ${data.get('business') || 'Not specified'}`,
+      `Requirement: ${data.get('requirement')}`,
+      `Details: ${data.get('details') || 'I would like to connect.'}`,
     ].join('\n');
     setSent(true);
     window.open(`https://wa.me/919588358750?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');

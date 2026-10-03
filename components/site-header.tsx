@@ -1,6 +1,4 @@
 import { ArrowUpRight } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
 import ThemeToggle from '@/app/theme-toggle';
 
 type ActivePage = 'home' | 'services' | 'work' | 'process' | 'contact';
@@ -16,22 +14,22 @@ const navItems: { label: string; href: string; key: ActivePage }[] = [
 export default function SiteHeader({ active }: { active: ActivePage }) {
   return (
     <header className="nav-wrap">
-      <Link className="brand" href="/" aria-label="Opervia home">
-        <Image src="/opervia-logo.png" alt="Opervia logo" width={46} height={46} priority />
+      <a className="brand" href="/" aria-label="Opervia home">
+        <img src="/opervia-logo.png" alt="Opervia logo" />
         <span>OPERVIA</span>
-      </Link>
+      </a>
       <nav aria-label="Primary navigation">
         {navItems.map((item) => (
-          <Link className={active === item.key ? 'active' : undefined} href={item.href} key={item.key}>
+          <a className={active === item.key ? 'active' : undefined} href={item.href} key={item.key}>
             {item.label}
-          </Link>
+          </a>
         ))}
       </nav>
       <div className="nav-actions">
         <ThemeToggle />
-        <Link className="nav-cta" href="/contact">
+        <a className="nav-cta" href="/contact">
           Start a project <ArrowUpRight size={17} />
-        </Link>
+        </a>
       </div>
     </header>
   );

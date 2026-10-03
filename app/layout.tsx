@@ -47,7 +47,11 @@ export const metadata: Metadata = {
   icons: { icon: '/opervia-logo.png', apple: '/opervia-logo.png' },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en" data-theme="dark" className="dark" suppressHydrationWarning>
       <head>
@@ -57,7 +61,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         {children}
       </body>
     </html>
