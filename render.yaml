@@ -1,11 +1,10 @@
 services:
   - type: web
     name: operiva
-    runtime: node
+    runtime: static
     plan: free
     buildCommand: npm ci && npm run build
-    startCommand: npm start
-    healthCheckPath: /
+    staticPublishPath: ./dist/client
     envVars:
       - key: NODE_VERSION
         value: 22.13.0
